@@ -1,7 +1,7 @@
-require rspec
-require ./game
+require 'rspec'
+require './game'
 
-describe GameTest do
+describe Game do
 	it 'should ' do
 		
 	end
