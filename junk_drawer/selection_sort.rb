@@ -2,7 +2,7 @@ class SelectionSort
 	def sort(arr)
 		arr.each_with_index do |item, index|
 			min_index = index
-			j = index 
+			j = index + 1
 			while j < arr.count do
 				if arr[j] < arr[min_index]
 					min_index = j
