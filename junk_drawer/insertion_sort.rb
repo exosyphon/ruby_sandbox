@@ -1,12 +1,14 @@
 class InsertionSort
 	def sort(arr)
-		arr.each_with_index do |item, index|
+		for index in (1...arr.count) do
 			sub_index = index
 			while sub_index > 0 && arr[sub_index] < arr[sub_index - 1] do
 				swap(sub_index, sub_index - 1, arr)
 				sub_index -= 1
 			end
 		end
+
+		arr
 	end
 
 	private
