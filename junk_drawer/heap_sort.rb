@@ -33,7 +33,7 @@ class MinHeap
     min_index = index
 
     (0...elements.count).each do |el_index|
-			if child_index + el_index <= elements.count - 1 
+			if child_index + el_index < elements.count
 				if elements[min_index] > elements[child_index + el_index]
 					min_index = child_index + el_index
 				end
