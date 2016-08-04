@@ -1,41 +1,26 @@
 class Wiggle
 	def size(arr)
-		subsequence = [arr[0]]
+		return arr.count if arr.count == 0 || arr.count == 1
+		subsequence = [arr[0], arr[1]]
 		wiggle_sequence = true
-		failed_check = false
+		is_increasing = arr[1] > arr[0]
 		el = 1
-		while el < arr.count - 1 do 
-			if positive?(arr[el], arr[el+1]) && !positive?(arr[el-1], arr[el])
-				failed_check = false
+		while el < arr.count do 
+			if is_increasing && arr[el] < arr[el - 1] 
 				subsequence << arr[el]
-			elsif !positive?(arr[el], arr[el+1]) && positive?(arr[el-1], arr[el])
-				failed_check = false
+				is_increasing = false
+			elsif !is_increasing && arr[el] > arr[el - 1] 
 				subsequence << arr[el]
-			elsif !failed_check
-				failed_check = true
-				el += 1
-			else
-				wiggle_sequence = false
-				break
+				is_increasing = true
 			end
 			el += 1
-		end
-
-		if wiggle_sequence
-			if positive?(arr[el-1], arr[el]) && !positive?(arr[el-2], arr[el-1])
-				subsequence << arr[el]
-			elsif !positive?(arr[el-1], arr[el]) && positive?(arr[el-2], arr[el-1])
-				subsequence << arr[el]
-			elsif failed_check
-				wiggle_sequence = false
-		  end	
 		end
 
 		puts "Input #{arr.inspect}"
 		puts "Output #{subsequence.count}"
 		if subsequence.count == arr.count
 			puts "The entire sequence is a wiggle sequence."
-		elsif wiggle_sequence 
+		elsif subsequence.count > 2 
 			puts "There are several subsequences that achieve this length. One is #{subsequence}."
 		end
 	end
@@ -53,4 +38,5 @@ puts Wiggle.new.size([1,17,5,10,13,15,10,5,16,8])
 puts "should be output 7"
 puts Wiggle.new.size([1,2,3,4,5,6,7,8,9])
 puts "should be 2"
-
+puts Wiggle.new.size([1,4,7,2,5])
+puts Wiggle.new.size([1,7,4,5,5])
